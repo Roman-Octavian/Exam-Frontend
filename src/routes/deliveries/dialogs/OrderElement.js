@@ -8,17 +8,11 @@ import Grid from '@mui/material/Grid';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 
-import { useNavigate } from "react-router-dom";
 
-import ProductCardDelete from "../dialogs/ProductCardDelete";
-import ProductCardEdit from "../dialogs/ProductCardEdit";
-
-export default function ProjectCard({ product, products, setProducts }) {
-
-    let navigate = useNavigate();
-
+export default function OrderElement({order, delivery}) {
     return (
-        <ThemeProvider theme={darkTheme}>
+        <>
+            <ThemeProvider theme={darkTheme}>
             <CssBaseline/>
             <Container sx={{py: 1}} maxWidth="md">
                 <Grid container spacing={4} columns={1}>
@@ -27,32 +21,29 @@ export default function ProjectCard({ product, products, setProducts }) {
                                 sx={{width: '100%', display: 'flex', flexDirection: 'row'}}>
                                 <CardContent sx={{flexGrow: 1}}>
                                     <Typography gutterBottom variant="h5" component="h2" >
-                                        {product.name}
+                                        {order.product.name}
                                     </Typography>
                                     <Typography component={'span'} paragraph={true} >
                                         <div >
-                                            <p>
-                                                Price: {product.price.toFixed(2)} DKK <br></br>
-                                                Weight: {product.weight} Grams
-                                            </p>
+                                                {!order !== undefined
+                                                
+                                                ?   <>
+                                                        <p>{order.product.name} | {order.product.price} DKK</p>
+                                                        <p>{order.product.weight} Grams </p> 
+                                                    </>
+                                                
+                                                : <p>Blank Order</p>
+                                                }
                                         </div>
                                     </Typography>
                                 </CardContent>
                                 <CardActions>
-                                    <ProductCardEdit
-                                        product={product}
-                                        products={products}
-                                        setProducts={setProducts}
-/>
-                                    <ProductCardDelete 
-                                        product={product}
-                                        setProducts={setProducts}
-                                    />
                                 </CardActions>
                             </Card>
                         </Grid>
                 </Grid>
             </Container>
         </ThemeProvider>
+        </>
     )
 }

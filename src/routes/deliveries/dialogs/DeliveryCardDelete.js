@@ -18,7 +18,7 @@ const Transition = forwardRef(function Transition(props, ref) {
     return <Slide direction="up" ref={ref} {...props} />;
     });
 
-export default function ProductCardDelete({product, setProducts}) {
+export default function DeliveryCardDelete({delivery, setDeliveries}) {
 
     // State
     const [confirmationOpen, setConfirmationOpen] = useState(false);
@@ -34,8 +34,8 @@ export default function ProductCardDelete({product, setProducts}) {
     };
     const handleDelete = (event) => {
         if (event) event.stopPropagation();
-        deleteById(product.id, "products");
-        setProducts((current) => current.filter((item) => item.id !== product.id));  
+        deleteById(delivery.id, "deliveries");
+        setDeliveries((current) => current.filter((item) => item.id !== delivery.id));  
     }
     
     return (
@@ -50,7 +50,7 @@ export default function ProductCardDelete({product, setProducts}) {
                     <DialogTitle>WARNING: This action is permanent!</DialogTitle>
                     <DialogContent>
                         <DialogContentText id="alert-dialog-slide-description">
-                            {'Are you sure you want to delete the product ' + '"' + product.name + '"?'}
+                            {'Are you sure you want to delete the delivery expected on ' + '"' + delivery.date + '"?'}
                         </DialogContentText>
                     </DialogContent>
                     <DialogActions>

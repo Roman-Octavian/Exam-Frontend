@@ -78,9 +78,10 @@ export async function getById(entity, id, func) {
  * @param {*} id Id of the entity to be edited
  * @param {*} body Object representing entity; attributes should be made to reflect desired changes
  * @param {*} entity Entity string name to customize URL to which the request is made
+ * @param {*} setState Setter that will be used to update state with newly added record
  * @returns HTTP response error if unsuccessful
  */
-export async function put(id, body, entity) {
+export async function put(id, body, entity, setState) {
     return fetch(URL + entity + "/" + id, {
         method: "PUT",
         headers: {
@@ -92,6 +93,10 @@ export async function put(id, body, entity) {
         if (!response.status === 200) {
             return response.status;
         }
+        return response.json();
+    })
+    .then(data => {
+        setState(data);
     })
     .catch(error => console.log(error));
 }

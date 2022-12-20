@@ -10,10 +10,10 @@ import Container from '@mui/material/Container';
 
 import { useNavigate } from "react-router-dom";
 
-import ProductCardDelete from "../dialogs/ProductCardDelete";
-import ProductCardEdit from "../dialogs/ProductCardEdit";
+import DeliveryCardDelete from "../dialogs/DeliveryCardDelete";
+import DeliveryCardEdit from "../dialogs/DeliveryCardEdit";
 
-export default function ProjectCard({ product, products, setProducts }) {
+export default function ProjectCard({ delivery, deliveries, setDeliveries }) {
 
     let navigate = useNavigate();
 
@@ -27,26 +27,26 @@ export default function ProjectCard({ product, products, setProducts }) {
                                 sx={{width: '100%', display: 'flex', flexDirection: 'row'}}>
                                 <CardContent sx={{flexGrow: 1}}>
                                     <Typography gutterBottom variant="h5" component="h2" >
-                                        {product.name}
+                                        {delivery.date}
                                     </Typography>
                                     <Typography component={'span'} paragraph={true} >
                                         <div >
                                             <p>
-                                                Price: {product.price.toFixed(2)} DKK <br></br>
-                                                Weight: {product.weight} Grams
+                                                Origin: {delivery.warehouse} <br></br>
+                                                Destination: {delivery.destination}
                                             </p>
                                         </div>
                                     </Typography>
                                 </CardContent>
                                 <CardActions>
-                                    <ProductCardEdit
-                                        product={product}
-                                        products={products}
-                                        setProducts={setProducts}
+                                    <DeliveryCardEdit
+                                        delivery={delivery}
+                                        deliveries={deliveries}
+                                        setDeliveries={setDeliveries}
 />
-                                    <ProductCardDelete 
-                                        product={product}
-                                        setProducts={setProducts}
+                                    <DeliveryCardDelete 
+                                        delivery={delivery}
+                                        setDeliveries={setDeliveries}
                                     />
                                 </CardActions>
                             </Card>
